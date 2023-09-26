@@ -31,22 +31,6 @@ services:
     restart: always
     depends_on: 
       - master
-  slave2:
-    build:
-      context: ./app/server
-      dockerfile: Dockerfile
-    container_name: slave2
-    command: ["slave", "50052", "--master_ip", "master", "--master_port", "50051", "--service_name", "localhost"]
-    tty: true
-    stdin_open: true
-    volumes:
-      - './app/server:/app'
-      - './data_gen/cars.json:/app/cars.json'
-    networks:
-      - cache_network
-    restart: always
-    depends_on: 
-      - master
   search:
     build:
       context: ./app/search
